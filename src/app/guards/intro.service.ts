@@ -13,8 +13,7 @@ export class IntroService {
   constructor(private router: Router) { }
   canActivate(): boolean {
     const hasSeenIntro =  localStorage.getItem(INTRO_KEY);
-    console.log(hasSeenIntro)
-    if (hasSeenIntro && (hasSeenIntro === 'true')) {
+     if (hasSeenIntro && (hasSeenIntro === 'true')) {
       alert("Into Done")
       return false;
   

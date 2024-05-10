@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, from, map, switchMap, tap } from 'rxjs';
- import { HttpClient } from '@angular/common/http';
- const TOKEN_KEY = 'my-token';
+ import { HttpClient, HttpResponse } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+ const TOKEN_KEY = environment.TOKEN_KEY;
 
 @Injectable({
   providedIn: 'root'
@@ -25,23 +25,14 @@ export class AuthenticationService {
 		}
 	}
 
-	login(credentials: { email:any; password:any }): Observable<any> {
-		return this.http.post(`https://reqres.in/api/login`, credentials).pipe(
-			map((data: any) => data.token),
-			switchMap((token) => {
-         localStorage.setItem(TOKEN_KEY,token)
-				return from(token);
-			}),
-			tap((_) => {
-				this.isAuthenticated.next(true);
-			})
-		);
+	login(credentials: { username:any; password:any },): Observable<HttpResponse<any>> {
+		return this.http.post<any>(environment.SERVER_URL+`/api/auth/login`, credentials,{ observe: 'response' })
 	}
 
 	logout(): void {
 		this.isAuthenticated.next(false);
 		localStorage.removeItem(TOKEN_KEY);
-    return    
+       return    
 	}
  
 }

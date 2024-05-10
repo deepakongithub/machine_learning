@@ -1,7 +1,5 @@
-import { NgModule, inject } from '@angular/core';
+import { NgModule } from '@angular/core';
 import {  PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { AuthenticationService } from './services/authentication.service';
-import { IntroService } from './guards/intro.service';
 import { introGuard } from './guards/intro.guard';
 import { authGuard } from './guards/auth.guard';
 import { autoLoginGuard } from './guards/auto-login.guard';
@@ -34,7 +32,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules,initialNavigation:"enabledBlocking" }),
   ],
   exports: [RouterModule]
 })

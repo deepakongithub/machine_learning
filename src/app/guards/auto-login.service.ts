@@ -14,8 +14,7 @@ export class AutoLoginService {
       filter((val) => val !== null), // Filter out initial Behaviour subject value
       take(1), // Otherwise the Observable doesn't complete!
       map((isAuthenticated) => {
-      console.log(isAuthenticated)
-        if (isAuthenticated) {
+         if (isAuthenticated) {
 					// Directly open inside area
 				   this.router.navigateByUrl('/', { replaceUrl: true });
           return false;
