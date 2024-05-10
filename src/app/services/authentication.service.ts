@@ -17,7 +17,6 @@ export class AuthenticationService {
 	 loadToken() {
 		const token =   localStorage.getItem(TOKEN_KEY);
 		if (token) {
-			console.log('set token: ', token);
 			this.token = token;
 			this.isAuthenticated.next(true);
 		} else {
@@ -32,6 +31,7 @@ export class AuthenticationService {
 	logout(): void {
 		this.isAuthenticated.next(false);
 		localStorage.removeItem(TOKEN_KEY);
+		this.token='';
        return    
 	}
  

@@ -40,6 +40,7 @@ export class LoginPage implements OnInit {
 				localStorage.setItem(TOKEN_KEY, token)
 
 				this.authService.isAuthenticated.next(true);
+				this.authService.loadToken();
 				await loading.dismiss();
 
 				this.router.navigateByUrl('/', { replaceUrl: true });
